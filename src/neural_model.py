@@ -13,5 +13,5 @@ class Model(nn.Module):
     def forward(self, user, movie):
         user_vec = self.em_users(user)
         movie_vec = self.em_movies(movie)
-        forw = torch.sum(user_vec * movie_vec , dim = 1)
+        forw = torch.sum(user_vec * movie_vec, dim=1)
         return forw  
