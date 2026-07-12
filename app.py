@@ -1,3 +1,4 @@
+import streamlit as st
 import torch
 import pandas as pd
 import sys, os
@@ -58,8 +59,19 @@ def recommend(selected_titles, top_n =5):
 
 
 
-    
+st.title("🎬 Movie Recommender")
+
+# λίστα με όλους τους τίτλους για το μενού
+all_titles = movies_titles['title'].tolist()
+
+# ο χρήστης διαλέγει
+selected = st.multiselect("Διάλεξε ταινίες που σου άρεσαν:", all_titles)
         
-
-
-print(recommend(["Toy Story (1995)", "Jumanji (1995)"]))
+if st.button("Δώσε μου προτάσεις!"):
+    if len(selected) == 0:
+        st.warning("Διάλεξε τουλάχιστον μία ταινία!")
+    else:
+        recommendations = recommend(selected)
+        st.subheader("Προτάσεις για σένα:")
+        for movie in recommendations:
+            st.write("🎬 " + movie)
