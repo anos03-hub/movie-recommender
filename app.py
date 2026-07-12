@@ -65,13 +65,13 @@ st.title("🎬 Movie Recommender")
 all_titles = movies_titles['title'].tolist()
 
 # ο χρήστης διαλέγει
-selected = st.multiselect("Διάλεξε ταινίες που σου άρεσαν:", all_titles)
+selected = st.multiselect("Pick atleast one movie that you really like!!!", all_titles)
         
-if st.button("Δώσε μου προτάσεις!"):
+if st.button("Show me suggestions!"):
     if len(selected) == 0:
-        st.warning("Διάλεξε τουλάχιστον μία ταινία!")
+        st.warning("Pick atleast one movie that you really like!!")
     else:
         recommendations = recommend(selected)
-        st.subheader("Προτάσεις για σένα:")
+        st.subheader("Recommendations for you!")
         for movie in recommendations:
             st.write("🎬 " + movie)
