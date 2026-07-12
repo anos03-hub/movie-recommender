@@ -20,7 +20,7 @@ train_df, test_df = train_test_split(ratings, test_size = 0.2, random_state = 42
 users, movies, ratings_t = to_tensors(train_df)
 users_test, movies_test, ratings_test = to_tensors(test_df)
 
-model = Model(num_users, num_movies, embedding_dim= 32)
+model = Model(num_users, num_movies, embedding_dim= 16)
 loss_fn = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01, weight_decay=1e-3)
 
@@ -57,3 +57,7 @@ with torch.no_grad():
     test_predictions = model(users_test, movies_test)
     mae = torch.abs(test_predictions - ratings_test).mean()
     print(f"Test MAE: {mae.item():.4f}")
+
+
+torch.save(model.state_dict(), 'movie_model.pth')
+print("Model saved!")
