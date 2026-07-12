@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-main.py — Entry point. Τρέχει όλο το pipeline και τυπώνει τα baseline αποτελέσματα.
-
-Τρέξε το από τη ρίζα του project:  python main.py
 """
 import os
 import sys
 
-# Πρόσθεσε τον φάκελο src/ στο path ώστε να δουλεύουν τα imports απ' όπου κι αν τρέχεις
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.join(BASE_DIR, 'src'))
 
