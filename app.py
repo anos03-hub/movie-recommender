@@ -64,8 +64,14 @@ st.title("🎬 Movie Recommender")
 # λίστα με όλους τους τίτλους για το μενού
 all_titles = movies_titles['title'].tolist()
 
+counts = ratings['movieId'].value_counts().reset_index()
+counts.columns = ['movieId', 'count']
+merged = movies_titles.merge(counts, on='movieId')
+merged = merged.sort_values('count', ascending = False)
+popular_titles = merged['title'].tolist()
+
 # ο χρήστης διαλέγει
-selected = st.multiselect("Pick atleast one movie that you really like!!!", all_titles)
+selected = st.multiselect("Pick atleast one movie that you really like!!!", popular_titles)
         
 if st.button("Show me suggestions!"):
     if len(selected) == 0:
