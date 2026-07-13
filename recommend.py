@@ -52,7 +52,7 @@ def recommend(selected_titles, top_n =5):
             titles = movies_titles[movies_titles['movieId'] == movie_id]['title'].values[0]
             genres = movies_titles[movies_titles['movieId'] == movie_id]['genres'].values[0]
             genres = genres.replace('|', ', ')
-            recommendations.append(recommendations.append(f"{title} — {genres}"))
+            recommendations.append(f"{title} — {genres}")
         if len(recommendations) == top_n:
             break
     return recommendations
